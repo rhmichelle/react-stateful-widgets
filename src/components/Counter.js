@@ -27,10 +27,14 @@ STEP 2:
   What the value of 'color' should be instead is a ternary expression that goes like this:
   If count is even, then "royalblue", else "crimson".
 
+  const color = count === even ? 'royalblue : crimson;
+
 STEP 3:
   We need to replace some hard-coded info in the JSX with expressions, interpolated inside curly brackets.
   Start by replacing the character "0" with {count}. The 'count' slice of state is the source of truth here.
   Then, replace the word "even" with a ternary: {if count is even number, then string "even", else string "odd"}.
+
+  count % 2 === 0 ? "even" : "odd"
 
 STEP 4:
   This click handler needs to use 'setCount' to schedule the 'count' to become the current 'count' plus one.
@@ -65,16 +69,22 @@ const [count, setCount] = useState(0);
     setCount(0)
   };
 
+  const color = 
+  count % 2 === 0 ? 'royalblue' : 'crimson';
+
+  const word =
+  count % 2 === 0 ? 'even' : 'odd';
+
   const style = {
     fontSize: '1.5em',
     marginBottom: '0.3em',
-    color: 'royalblue', /* STEP 2 */
+    color: color /* STEP 2 */
   };
 
   return (
     <div className='widget-counter container'>
       <h2>Counter</h2>
-      <div style={style}>Number {count} is even</div> {/* STEP 3 */}
+      <div style={style}>Number {count} is {word}</div> {/* STEP 3 */}
       <div>
         <button onClick={increment}>Increment</button>
         <button onClick={decrement}>Decrement</button>
